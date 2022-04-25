@@ -26,3 +26,7 @@ class User(Resource):
 
             check = True
         return True
+
+    def get(self):
+        print('test')
+        return 'TEST'

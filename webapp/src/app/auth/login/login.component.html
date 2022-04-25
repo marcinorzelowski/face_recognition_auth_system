@@ -6,11 +6,11 @@
           <div class="row">
             <mat-form-field>
               <mat-label>Login or username</mat-label>
-              <input matInput formControlName="login"/>
+              <input type="text" matInput formControlName="username"/>
             </mat-form-field>
             <mat-form-field>
               <mat-label>Password</mat-label>
-              <input matInput formControlName="password"/>
+              <input type="password" matInput formControlName="password"/>
             </mat-form-field>
             <div class="webcam-image" *ngIf="webcamImage">
               <p>Image used to login:</p>

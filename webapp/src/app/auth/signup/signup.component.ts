@@ -28,8 +28,8 @@ export class SignupComponent implements OnInit {
 
   private createForm(): void {
     this.form = new FormGroup({
-      username: new FormControl(null, [Validators.required]),
-      password: new FormControl(null, [Validators.required])
+      username: new FormControl(null, [Validators.required, Validators.minLength(7)]),
+      password: new FormControl(null, [Validators.required, Validators.minLength(7)])
     })
   }
 
@@ -46,7 +46,7 @@ export class SignupComponent implements OnInit {
   }
 
   public signUp(): void {
-    if(this.form.valid) {
+    if(this.form.valid && this.webcamImages.length === 3) {
       this.authService.signUp(this.form.value, this.webcamImages).subscribe(successRegistration => {
         if(successRegistration) {
           this.snackBar.open('Rejestracja przebiegla pomyslnie, proszę się zalogować!', 'OK');
@@ -55,6 +55,8 @@ export class SignupComponent implements OnInit {
           this.snackBar.open('Rejestracja nie powiodła się', 'OK');
         }
       })
+    } else {
+      this.snackBar.open('Błędna walidacja bądź brak wymaganej liczby zdjęć.', 'OK');
     }
   }
 

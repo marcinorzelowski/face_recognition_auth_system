@@ -34,7 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			"/swagger-ui/**",
 			"/signup",
 			"/**",
-			"/authenticate/**",
+			"**/authenticate",
 	};
 
 	@Autowired

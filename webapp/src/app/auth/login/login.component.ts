@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
 
   createForm(): void {
     this.form = new FormGroup({
-      login: new FormControl('', []),
+      username: new FormControl('', []),
       password: new FormControl('')
     })
   }
@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
   submit(): void {
     const img = this.webcamImage?.imageAsBase64;
     if (this.webcamImage !== undefined) {
-      const loginData = {username: this.form.controls['logine'].value, password: this.form.controls['password'].value}
+      const loginData = this.form.value;
       this.authService.login(loginData, this.webcamImage);
     }
 

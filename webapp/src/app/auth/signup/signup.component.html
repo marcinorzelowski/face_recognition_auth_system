@@ -15,10 +15,10 @@
             <input matInput formControlName="password" type="password"/>
           </mat-form-field>
         </div>
-        <div class="alert alert-primary" *ngIf="webcamImages.length === 0">
-          Wymagane jest dodanie minimum trzech zdjęć.
+        <div class="alert alert-primary" *ngIf="webcamImages.length < 3">
+          Wymagane jest dodanie jeszcze {{3 - webcamImages.length}} zdjęć
         </div>
-        <div class="row">
+        <div class="row" *ngIf="webcamImages.length < 3">
           <button type="button" mat-stroked-button color="primary" (click)="getImage()">Add image</button>
         </div>
         <mat-list>

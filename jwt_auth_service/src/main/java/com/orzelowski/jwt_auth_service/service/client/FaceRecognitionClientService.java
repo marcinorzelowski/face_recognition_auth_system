@@ -5,12 +5,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.client.MultipartBodyBuilder;
 import org.springframework.stereotype.Service;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @Service
 public class FaceRecognitionClientService {
@@ -21,7 +20,7 @@ public class FaceRecognitionClientService {
     private String url;
 
     public FaceRecognitionClientService() {
-        this.faceRecognitionClient = WebClient.create(url);
+        this.faceRecognitionClient = WebClient.create("http://localhost:5000");
     }
 
 
@@ -33,11 +32,22 @@ public class FaceRecognitionClientService {
                 .body(BodyInserters.fromMultipartData(builder.build()))
                 .exchangeToMono(clientResponse -> {
                     if(clientResponse.statusCode().equals(HttpStatus.OK)) {
+                        System.out.println("Positivoo");
                         return clientResponse.bodyToMono(Boolean.class).thenReturn(clientResponse.statusCode());
                     } else {
                         throw new ServiceException("Error!");
                     }
                 });
 
+    }
+
+    public void test() {
+        Mono<String> test = this.faceRecognitionClient.get()
+                .uri("/user")
+                .retrieve()
+                .bodyToMono(String.class)
+                        ;
+
+        test.subscribe(System.out::println);
     }
 }

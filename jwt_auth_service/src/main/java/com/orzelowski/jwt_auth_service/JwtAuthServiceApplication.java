@@ -14,4 +14,6 @@ public class JwtAuthServiceApplication {
         SpringApplication.run(JwtAuthServiceApplication.class, args);
     }
 
+
+
 }
