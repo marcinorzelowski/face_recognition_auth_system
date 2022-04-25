@@ -1,0 +1,27 @@
+spring:
+  jpa:
+    hibernate:
+      temp:
+        use_jdbc_metadata_defaults: false
+      ddl-auto: none
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  datasource:
+    url: "jdbc:postgresql://localhost:5432/face_recognition"
+    username: postgres
+    password: password
+  servlet:
+    multipart:
+      enabled: true
+jwt:
+  secret: weiti
+  get:
+    token:
+      uri: /authenticate
+
+face_recognition_service:
+  url: http://127.0.0.1:5000

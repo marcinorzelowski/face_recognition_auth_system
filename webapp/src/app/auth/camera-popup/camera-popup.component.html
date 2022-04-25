@@ -1,0 +1,18 @@
+<mat-spinner *ngIf="loading"></mat-spinner>
+<div [ngClass]="{'hidde': loading}">
+  <webcam [width]="300" [trigger]="triggerObservable" (cameraSwitched)="stopLoading()" (imageCapture)="handleImage($event)"
+                              [switchCamera]="nextWebcamObservable" *ngIf="!imageTaken"></webcam>
+
+  <div class="buttons" *ngIf="!imageTaken">
+    <button mat-stroked-button color="primary" (click)="takeSnapshot()">Take Picture</button>
+    <button mat-stroked-button color="primary" (click)="changeWebCame(true)">Toggle Camera</button>
+    <button mat-stroked-button color="warn" (click)="cancel()">Close</button>
+  </div>
+  <div class="webcam-image" *ngIf="imageTaken">
+    <img [src]="image.imageAsDataUrl" class="center"/>
+  </div>
+  <div class="buttons" *ngIf="imageTaken">
+    <button mat-stroked-button color="primary" (click)="save()">Save</button>
+    <button mat-stroked-button color="warn" (click)="reset()">Reset</button>
+  </div>
+</div>
