@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1a4d0384-506a-4d5c-9a1d-167203952dcb" name="Default Changelist" comment="repairing commit.">
+      <change afterPath="$PROJECT_DIR$/../jwt_auth_service/src/main/java/com/orzelowski/jwt_auth_service/errors/FaceNotRecognizedException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/resources/user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testfile.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/testfile.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../jwt_auth_service/src/main/java/com/orzelowski/jwt_auth_service/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../jwt_auth_service/src/main/java/com/orzelowski/jwt_auth_service/config/WebSecurityConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../jwt_auth_service/src/main/java/com/orzelowski/jwt_auth_service/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../jwt_auth_service/src/main/java/com/orzelowski/jwt_auth_service/service/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../jwt_auth_service/src/main/java/com/orzelowski/jwt_auth_service/service/client/FaceRecognitionClientService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../jwt_auth_service/src/main/java/com/orzelowski/jwt_auth_service/service/client/FaceRecognitionClientService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +93,7 @@
       <updated>1649875242183</updated>
       <workItem from="1649875253557" duration="9966000" />
       <workItem from="1649886218663" duration="4801000" />
-      <workItem from="1650374389429" duration="7396000" />
+      <workItem from="1650374389429" duration="8052000" />
     </task>
     <task id="LOCAL-00001" summary="Add basic connection to python service and add missing files.">
       <created>1650925905827</created>

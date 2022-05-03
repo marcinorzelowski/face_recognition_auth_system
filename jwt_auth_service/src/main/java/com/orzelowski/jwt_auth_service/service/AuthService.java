@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.orzelowski.jwt_auth_service.config.JwtTokenUtil;
 import com.orzelowski.jwt_auth_service.dto.RegisterUserDTO;
+import com.orzelowski.jwt_auth_service.errors.FaceNotRecognizedException;
 import com.orzelowski.jwt_auth_service.model.ApplicationUser;
 import com.orzelowski.jwt_auth_service.model.JwtResponse;
 import com.orzelowski.jwt_auth_service.model.UserImage;
@@ -53,27 +54,21 @@ public class AuthService {
     private FaceRecognitionClientService faceRecognitionClientService;
 
 
-    public ApplicationUser createNewUser(RegisterUserDTO registerUserDTO) {
-        ApplicationUser applicationUser = new ApplicationUser();
-        applicationUser.setUsername(registerUserDTO.getUsername());
-        applicationUser.setPassword(passwordEncoder.encode(registerUserDTO.getPassword()));
-        return applicationUserRepository.save(applicationUser);
-    }
-
     public ResponseEntity authenticate(RegisterUserDTO registerUserDTO, MultipartFile image) throws Exception {
 
 
-        faceRecognitionClientService.test();
-        authenticate(registerUserDTO.getUsername(), registerUserDTO.getPassword());
+        authenticate(registerUserDTO.getUsername(), registerUserDTO.getPassword(), image);
+        Boolean isRecognized = faceRecognitionClientService.authenticate(image, registerUserDTO.getUsername());
         final UserDetails userDetails = userDetailsService.loadUserByUsername(registerUserDTO.getUsername());
         final String token = jwtTokenUtil.generateToken(userDetails);
         return ResponseEntity.ok(new JwtResponse(token));
     }
 
-    private void authenticate(String username, String password) throws Exception {
-        Objects.requireNonNull(username);
-        Objects.requireNonNull(password);
+    private void authenticate(String username, String password, MultipartFile image) throws Exception {
         try {
+            Boolean isRecognized = faceRecognitionClientService.authenticate(image, username);
+            if (!isRecognized)
+                throw new FaceNotRecognizedException("");
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
         } catch (DisabledException e) {
             throw new Exception("USER_DISABLED", e);
